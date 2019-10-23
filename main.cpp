@@ -28,5 +28,5 @@ int main(int argc, char *argv[])
   //create new DoublyLinkedList
   GenDoublyLinkedList<int> g;
   g.insertFront(5);
-  cout << g.removeFront() << endl;
+  g.printList();
 }

@@ -107,6 +107,7 @@ void GenDoublyLinkedList<T>::insertBack(T elem)
   back = node;
   size++;
 }
+
 template <class T>
 ListNode<T>* GenDoublyLinkedList<T>::remove(T elem)
 {
@@ -114,7 +115,10 @@ ListNode<T>* GenDoublyLinkedList<T>::remove(T elem)
   //not returning the data because it won't always be an int
 
   //first check if empty
-
+  if(isEmpty() == true)
+  {
+    return NULL;
+  }
   //iterate through list
   T* curr = front;
   //run loop until data is the data we are looking for
@@ -154,6 +158,7 @@ ListNode<T>* GenDoublyLinkedList<T>::remove(T elem)
 
   return curr;
 }
+
 template <class T>
 bool GenDoublyLinkedList<T>::isEmpty()
 {
@@ -164,5 +169,16 @@ bool GenDoublyLinkedList<T>::isEmpty()
   else
   {
     return true;
+  }
+}
+
+template <class T>
+void GenDoublyLinkedList<T>::printList()
+{
+  ListNode<T> *curr = front;
+  while(curr != NULL)
+  {
+    cout << curr->data << endl;
+    curr = curr->next;
   }
 }
