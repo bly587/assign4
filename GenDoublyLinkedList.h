@@ -16,10 +16,10 @@ class GenDoublyLinkedList
 
     void insertFront(T elem);
     void insertBack(T elem);
-    ListNode<T>* removeFront();
+    T removeFront();
     ListNode<T>* remove(T elem);
-    ListNode* deletePos(int pos);
-    ListNode* find(T elem);
+    ListNode<T>* deletePos(int pos);
+    ListNode<T>* find(T elem);
 
     bool isEmpty();
     void printList();
@@ -42,7 +42,7 @@ GenDoublyLinkedList<T>::~GenDoublyLinkedList()
 template <class T>
 void GenDoublyLinkedList<T>::insertFront(T elem)
 {
-  ListNode<T> node = new ListNode<T>(elem);
+  ListNode<T> *node = new ListNode<T>(elem);
   //check if is empty
   if(isEmpty()) //if size == 0
   {
@@ -59,11 +59,11 @@ void GenDoublyLinkedList<T>::insertFront(T elem)
   size++;
 }
 template <class T>
-T* GenDoublyLinkedList<T>::removeFront()
+T GenDoublyLinkedList<T>::removeFront()
 {
   //check if empty
   //front temp
-  T* ft = front;
+  ListNode<T>* ft = front;
   //check if there is only one element
   if(front->next == NULL)
   {
@@ -91,7 +91,7 @@ T* GenDoublyLinkedList<T>::removeFront()
 template <class T>
 void GenDoublyLinkedList<T>::insertBack(T elem)
 {
-  ListNode<T> node = new ListNode<T>(elem);
+  ListNode<T> *node = new ListNode<T>(elem);
   //check if is empty
   if(isEmpty()) //if size == 0
   {
@@ -108,7 +108,7 @@ void GenDoublyLinkedList<T>::insertBack(T elem)
   size++;
 }
 template <class T>
-T* GenDoublyLinkedList<T>::remove(T elem)
+ListNode<T>* GenDoublyLinkedList<T>::remove(T elem)
 {
   //returning pointer to node
   //not returning the data because it won't always be an int
