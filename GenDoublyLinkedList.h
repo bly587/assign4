@@ -1,4 +1,5 @@
 #include <iostream>
+#include "ListNode.h"
 
 using namespace std;
 
@@ -6,18 +7,19 @@ template <class T>
 class GenDoublyLinkedList
 {
   public:
-    ListNode *front;
-    ListNode *back;
+    ListNode<T>* front;
+    ListNode<T>* back;
     unsigned int size;
 
     GenDoublyLinkedList();
     ~GenDoublyLinkedList();
 
-    void insertFront(int d);
-    void insertBack(int d);
-    T removeFront();
-    T deletePos(int pos);
-    T find(int d);
+    void insertFront(T elem);
+    void insertBack(T elem);
+    ListNode<T>* removeFront();
+    ListNode<T>* remove(T elem);
+    ListNode* deletePos(int pos);
+    ListNode* find(T elem);
 
     bool isEmpty();
     void printList();
@@ -38,9 +40,9 @@ GenDoublyLinkedList<T>::~GenDoublyLinkedList()
   //will need to iterate through the list
 }
 template <class T>
-void DoublyLinkedList<T>::insertFront(T elem)
+void GenDoublyLinkedList<T>::insertFront(T elem)
 {
-  ListNode *node = new ListNode(elem);
+  ListNode<T> node = new ListNode<T>(elem);
   //check if is empty
   if(isEmpty()) //if size == 0
   {
@@ -57,11 +59,11 @@ void DoublyLinkedList<T>::insertFront(T elem)
   size++;
 }
 template <class T>
-T DoublyLinkedList<T>::removeFront()
+T* GenDoublyLinkedList<T>::removeFront()
 {
   //check if empty
   //front temp
-  ListNode *ft = front;
+  T* ft = front;
   //check if there is only one element
   if(front->next == NULL)
   {
@@ -87,9 +89,9 @@ T DoublyLinkedList<T>::removeFront()
   return temp;
 }
 template <class T>
-void DoublyLinkedList<T>::insertBack(T elem)
+void GenDoublyLinkedList<T>::insertBack(T elem)
 {
-  ListNode *node = new ListNode(elem);
+  ListNode<T> node = new ListNode<T>(elem);
   //check if is empty
   if(isEmpty()) //if size == 0
   {
@@ -106,7 +108,7 @@ void DoublyLinkedList<T>::insertBack(T elem)
   size++;
 }
 template <class T>
-ListNode* DoublyLinkedList<T>::remove(T elem)
+T* GenDoublyLinkedList<T>::remove(T elem)
 {
   //returning pointer to node
   //not returning the data because it won't always be an int
@@ -114,7 +116,7 @@ ListNode* DoublyLinkedList<T>::remove(T elem)
   //first check if empty
 
   //iterate through list
-  ListNode *curr = front;
+  T* curr = front;
   //run loop until data is the data we are looking for
   while(curr->data != elem)
   {
