@@ -26,7 +26,7 @@ class GenQueueLL{
 // constructor
 template <class T>
 GenQueueLL<T>::GenQueueLL(){
-  GenDoublyLinkedList<T>* myQueue = new GenDoublyLinkedList<T>();
+  GenDoublyLinkedList<T> *myQueue = new GenDoublyLinkedList<T>();
   numElements = 0;
   head = 0;
   tail = -1;
