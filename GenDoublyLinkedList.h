@@ -154,3 +154,15 @@ ListNode<T>* GenDoublyLinkedList<T>::remove(T elem)
 
   return curr;
 }
+template <class T>
+bool GenDoublyLinkedList<T>::isEmpty()
+{
+  if(size > 0)
+  {
+    return false;
+  }
+  else
+  {
+    return true;
+  }
+}
