@@ -1,4 +1,5 @@
 #include <iostream>
+#include "GenDoublyLinkedList.h"
 
 using namespace std;
 
@@ -23,4 +24,9 @@ int main(int argc, char *argv[])
   {
     filename = argv[1];
   }
+
+  //create new DoublyLinkedList
+  GenDoublyLinkedList<int> g;
+  g.insertFront(5);
+  cout << g.removeFront() << endl;
 }
