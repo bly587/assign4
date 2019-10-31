@@ -6,22 +6,35 @@ class Student{
   public:
 
     int waitTime;
-    int timeAtWindow;
+    int timeNeeded;
 
     //constructor
     Student();
     //overload
-    Student(int wt, int tw);
+    Student(int tn);
+    //setter for time at window
+    void UpdateTimeNeeded();
+    void UpdateTimeWaiting();
 };
 
 Student::Student()
 {
   waitTime = 0;
-  timeAtWindow = 0;
+  timeNeeded = 0;
 }
 
-Student::Student(int wt, int tw)
+Student::Student(int tn)
 {
-  waitTime = wt;
-  timeAtWindow = tw;
+  waitTime = 0;
+  timeNeeded = tn;
+}
+
+void Student::UpdateTimeNeeded()
+{
+  timeNeeded--;
+}
+
+void Student::UpdateTimeWaiting()
+{
+  waitTime++;
 }
