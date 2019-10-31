@@ -6,6 +6,9 @@
 
 using namespace std;
 
+// test functions
+bool testTheFunctions();
+
 int main(int argc, char *argv[])
 {
   //get user input
@@ -28,7 +31,12 @@ int main(int argc, char *argv[])
     filename = argv[1];
   }
 
+  testTheFunctions();
 
+  return 0;
+}
+
+bool testTheFunctions(){
   //create new DoublyLinkedList
   GenDoublyLinkedList<int> *g = new GenDoublyLinkedList<int>();
   g->insertFront(5);
@@ -54,6 +62,4 @@ int main(int argc, char *argv[])
   cout << "Back:  " << theBestQueue->peekBack() << endl;
   cout << "size should be 5: " << theBestQueue->getSize() << endl;
   cout << "isEmpty?: " << theBestQueue->isEmpty() << endl;
-
-  return 0;
 }
