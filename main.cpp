@@ -27,23 +27,30 @@ int main(int argc, char *argv[])
   }
 
   //create new DoublyLinkedList
-  GenDoublyLinkedList<int> g;
-  g.insertFront(5);
-  g.printList();
+  GenDoublyLinkedList<int> *g = new GenDoublyLinkedList<int>();
+  g->insertFront(5);
+  g->printList();
 
-  GenQueueLL<int> gee;
-  gee.add(3);
+  GenQueueLL<double> *gee = new GenQueueLL<double>();
+  gee->add(3.4);
+  gee->add(5.4);
+  gee->add(6.9);
+  cout << "peeking back...: " << gee->peekBack() << endl;
 
-  GenQueueLL<string> theBestQueue;
-  theBestQueue.add("dicks");
-  theBestQueue.add("dick2");
-  theBestQueue.add("dick3");
-  theBestQueue.add("dick4");
-  theBestQueue.add("dick5");
-  theBestQueue.add("dick6");
-  theBestQueue.remove();
-  cout << "dick5??? " << theBestQueue.peek() << endl;
-  cout << "size should be 5: " << theBestQueue.getSize() << endl;
+  GenQueueLL<string> *theBestQueue = new GenQueueLL<string>();
+  theBestQueue->add("test1");
+  theBestQueue->add("test2");
+  theBestQueue->add("test3");
+  theBestQueue->add("test4");
+  theBestQueue->add("test5");
+  theBestQueue->add("test6");
+  cout << "size: " << theBestQueue->getSize() << endl;
+  cout << "removing: " << theBestQueue->remove() << endl;
+  cout << "size: " << theBestQueue->getSize() << endl;
+  cout << "Front:  " << theBestQueue->peekFront() << endl;
+  cout << "Back:  " << theBestQueue->peekBack() << endl;
+  cout << "size should be 5: " << theBestQueue->getSize() << endl;
+  cout << "isEmpty?: " << theBestQueue->isEmpty() << endl;
 
 
 }

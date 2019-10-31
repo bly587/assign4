@@ -2,7 +2,6 @@
 #include "GenDoublyLinkedList.h"
 #ifndef GENQUEUELL_H
 #define GENQUEUELL_H
-//#include
 
 using namespace std;
 
@@ -14,8 +13,8 @@ class GenQueueLL{
 
     void add(T data);
     T remove();
-    T peek();
-    bool isFull();
+    T peekFront();
+    T peekBack();
     bool isEmpty();
     int getSize();
 
@@ -54,10 +53,16 @@ T GenQueueLL<T>::remove(){
   return c;
 }
 
-// peek method
+// peek front method
 template <class T>
-T GenQueueLL<T>::peek(){
+T GenQueueLL<T>::peekFront(){
   return myQueue->front->data;
+}
+
+// peek back method
+template <class T>
+T GenQueueLL<T>::peekBack(){
+  return myQueue->back->data;
 }
 
 // isEmpty method
