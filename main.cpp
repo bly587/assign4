@@ -1,7 +1,6 @@
 #include <iostream>
-//#include "GenDoublyLinkedList.h"
 #include "Student.h"
-//#include "Window.h"
+#include "Window.h"
 #include "GenQueueLL.h"
 
 using namespace std;
