@@ -1,4 +1,6 @@
 #include <iostream>
+#ifndef GENDOUBLYLINKEDLIST_H
+#define GENDOUBLYLINKEDLIST_H
 #include "ListNode.h"
 
 using namespace std;
@@ -25,6 +27,8 @@ class GenDoublyLinkedList
     void printList();
     unsigned int getSize();
 };
+#endif
+
 //default
 template <class T>
 GenDoublyLinkedList<T>::GenDoublyLinkedList()

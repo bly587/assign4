@@ -1,5 +1,8 @@
 #include <iostream>
 #include "GenDoublyLinkedList.h"
+#ifndef GENQUEUELL_H
+#define GENQUEUELL_H
+//#include
 
 using namespace std;
 
@@ -9,7 +12,7 @@ class GenQueueLL{
     GenQueueLL(); // constructor
     ~GenQueueLL();
 
-    void insert(T data);
+    void add(T data);
     T remove();
     T peek();
     bool isFull();
@@ -17,19 +20,16 @@ class GenQueueLL{
     int getSize();
 
   private:
-    int head;
-    int tail;
     int numElements;
-    T* myQueue;
+    GenDoublyLinkedList<T> *myQueue;
 };
+#endif
 
 // constructor
 template <class T>
 GenQueueLL<T>::GenQueueLL(){
-  GenDoublyLinkedList<T> *myQueue = new GenDoublyLinkedList<T>();
+  myQueue = new GenDoublyLinkedList<T>();
   numElements = 0;
-  head = 0;
-  tail = -1;
 }
 
 // destructor
@@ -38,12 +38,11 @@ GenQueueLL<T>::~GenQueueLL(){
   delete myQueue;
 }
 
-// insert method
+// add method
 template <class T>
-void GenQueueLL<T>::insert(T data){
+void GenQueueLL<T>::add(T data){
   // adds the actual element
   myQueue->insertBack(data);
-  ++tail;
   ++numElements;
 }
 
@@ -51,7 +50,6 @@ void GenQueueLL<T>::insert(T data){
 template <class T>
 T GenQueueLL<T>::remove(){
   T c = myQueue->removeFront();
-  ++head;
   --numElements;
   return c;
 }
@@ -59,7 +57,7 @@ T GenQueueLL<T>::remove(){
 // peek method
 template <class T>
 T GenQueueLL<T>::peek(){
-  return myQueue[head];
+  return myQueue->front->data;
 }
 
 // isEmpty method

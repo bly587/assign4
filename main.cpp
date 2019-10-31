@@ -31,13 +31,16 @@ int main(int argc, char *argv[])
   g.insertFront(5);
   g.printList();
 
+  GenQueueLL<int> gee;
+  gee.add(3);
+
   GenQueueLL<string> theBestQueue;
-  theBestQueue.insert("dicks");
-  theBestQueue.insert("dick2");
-  theBestQueue.insert("dick3");
-  theBestQueue.insert("dick4");
-  theBestQueue.insert("dick5");
-  theBestQueue.insert("dick6");
+  theBestQueue.add("dicks");
+  theBestQueue.add("dick2");
+  theBestQueue.add("dick3");
+  theBestQueue.add("dick4");
+  theBestQueue.add("dick5");
+  theBestQueue.add("dick6");
   theBestQueue.remove();
   cout << "dick5??? " << theBestQueue.peek() << endl;
   cout << "size should be 5: " << theBestQueue.getSize() << endl;
