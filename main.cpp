@@ -1,4 +1,7 @@
 #include <iostream>
+//#include "GenDoublyLinkedList.h"
+#include "Student.h"
+//#include "Window.h"
 #include "GenQueueLL.h"
 
 using namespace std;
@@ -26,8 +29,6 @@ int main(int argc, char *argv[])
   }
 
 
-  //creating a studnet
-  Student s1 = new Student();
   //create new DoublyLinkedList
   GenDoublyLinkedList<int> *g = new GenDoublyLinkedList<int>();
   g->insertFront(5);
