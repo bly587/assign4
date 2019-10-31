@@ -7,10 +7,14 @@ class Window{
 
     bool isOpen;
     Student s;
-    int idleTime;
+    int idleTime; // cumulative idle time
 
     Window();
-    Window(bool occ, Student s1, int iT);
+    ~Window();
+
+    // add or remove student from the window
+    void setStudent(Student s1); // used when student exits line and goes to window
+    Student removeStudent(); // when student is done at the window
 };
 
 Window::Window()
@@ -20,9 +24,30 @@ Window::Window()
   idleTime = 0;
 }
 
-Window::Window(bool occ, Student s1, int iT)
-{
-  isOpen = occ;
+Window::~Window(){
+  // figure out
+}
+
+void Window::setStudent(Student s1){
   s = s1;
-  idleTime = iT;
+  isOpen = false;
+}
+
+Student Window::removeStudent(){
+  isOpen = true;
+  Student student = s;
+  s = NULL;
+  return student;
+}
+
+void Window::updateWindow(){
+  if (isOpen){ // no student here
+    idleTime++; // increments cumulative idleTime for the window
+  }
+  else{ // student at window
+    s.timeNeeded--; // decrement timeNeeded
+    if (timeNeeded == 0){ // if student is done at window
+      removeStudent();
+    }
+  }
 }
