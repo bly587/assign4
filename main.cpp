@@ -26,6 +26,9 @@ int main(int argc, char *argv[])
     filename = argv[1];
   }
 
+
+  //creating a studnet
+  Student s1 = new Student();
   //create new DoublyLinkedList
   GenDoublyLinkedList<int> *g = new GenDoublyLinkedList<int>();
   g->insertFront(5);
