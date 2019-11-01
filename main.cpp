@@ -9,6 +9,7 @@ using namespace std;
 
 // test functions
 bool testTheFunctions();
+void calcAndPrintStats(SLinkedList *student_wait_times, Window* window_array);
 
 int main(int argc, char *argv[])
 {
@@ -145,12 +146,16 @@ int main(int argc, char *argv[])
 
   }
 
-
+  // Calculates and prints the statistics
+  calcAndPrintStats(student_wait_times, *window_array);
   // ---------------------------------
   //testTheFunctions();
   return 0;
 }
 
+void calcAndPrintStats(SLinkedList *student_wait_times, Window* window_array){
+  cout << "we did it!" << endl;
+}
 
 bool testTheFunctions(){
 
