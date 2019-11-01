@@ -49,6 +49,7 @@ void Window::updateWindow(){
     s->timeNeeded--; // decrement timeNeeded
     if (s->timeNeeded == 0){ // if student is done at window
       removeStudent();
+      cout << "student leaving Window!" << endl;
     }
   }
 }
