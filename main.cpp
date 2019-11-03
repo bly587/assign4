@@ -9,7 +9,7 @@ using namespace std;
 
 // test functions
 bool testTheFunctions();
-void calcAndPrintStats(SLinkedList *student_wait_times, Window* window_array);
+void calcAndPrintStats(SLinkedList *student_wait_times, Window* window_array, int num_windows);
 
 int main(int argc, char *argv[])
 {
@@ -55,7 +55,7 @@ int main(int argc, char *argv[])
   int num_windows = stoi(line); // gets number of windows
 
   // Creates window array and all the window objects
-  Window* window_array[num_windows];
+  Window *window_array[num_windows];
   for (int i = 0; i < num_windows; ++i){
     Window *w  = new Window();
     window_array[i] = w;
@@ -81,15 +81,22 @@ int main(int argc, char *argv[])
       // Increment variables
       // Updates students in line/queue
       for (int i = 0; i < registrar_line->getSize(); ++i){
+        //pull out to update
         Student *s = registrar_line->remove();
+        //update their waittime
         s->waitTime++;
         cout << "incrementing wait time for student in line!" << endl;
+        //add them back into the queue. This works because if everyone is removed and then added back to the queue the order will be the same
         registrar_line->add(s);
       }
       // Updates Windows
       cout << "updating the windows!" << endl;
       for (int i = 0; i < num_windows; ++i){
+        //decrements the time needed to the students at windows
+        //also has students removed from windows if their time needed is 0
+        //increments time idle if window is open
         window_array[i]->updateWindow();
+        cout << "Window idle time is: " << window_array[i]->idleTime << endl;
       }
     }
 
@@ -147,14 +154,103 @@ int main(int argc, char *argv[])
   }
 
   // Calculates and prints the statistics
-  calcAndPrintStats(student_wait_times, *window_array);
+  calcAndPrintStats(student_wait_times, window_array, num_windows);
   // ---------------------------------
   //testTheFunctions();
   return 0;
 }
 
-void calcAndPrintStats(SLinkedList *student_wait_times, Window* window_array){
-  cout << "we did it!" << endl;
+void calcAndPrintStats(SLinkedList *student_wait_times, Window* window_array, int num_windows)
+{
+  // -------------- Student Wait Times --------------------
+  float mean_wait_time = 0;
+  float median = 0;
+  int longest_wait_time = 0;
+  int students_over_ten = 0;
+  //int counter = 0;
+  //since we only get one chance to remove the value we have to use it wisley
+  int tmp_wait_time = 0;
+  bool isEven = false;
+  int size_of_list = student_wait_times->getSize();
+  //if length is even
+  cout << size_of_list << endl;
+  cout << student_wait_times->getSize() << endl;
+  if(size_of_list % 2 == 0)
+  {
+    isEven = true;
+  }
+  for(int i = 0; i < student_wait_times->getSize(); ++i)
+  {
+    tmp_wait_time = student_wait_times->removeFront();
+    //put the longest wait time value into the respective variable
+    //check with each iteration if the wait time is greater than the one we have stored
+    if(tmp_wait_time > longest_wait_time)
+    {
+      longest_wait_time = tmp_wait_time;
+    }
+    //increment number of students waiting over 10 min
+    if(tmp_wait_time > 10)
+    {
+      students_over_ten++;
+    }
+    cout << tmp_wait_time << endl;
+    //add to mean
+    mean_wait_time += tmp_wait_time;
+    //calculate for median
+    //store first median value
+    if(isEven == true && i == (size_of_list / 2) - 1)
+    {
+      median += tmp_wait_time;
+    }
+    //store second median value
+    if(isEven == true && i == size_of_list / 2)
+    {
+      median += tmp_wait_time;
+      //divide by 2 since this will be the last time we alter the median variable
+      median = median / 2;
+    }
+    else
+    {
+      if(i == ((size_of_list - 1) / 2) + 1)
+      {
+        median = tmp_wait_time;
+      }
+    }
+  }
+  cout << mean_wait_time << endl;
+  mean_wait_time = mean_wait_time / size_of_list;
+  cout << student_wait_times->getSize() << endl;
+  // ------------------------- Window Stats -----------------------
+  cout << "Window stats starting" << endl;
+  float mean_idle = 0;
+  int longest_idle = 0;
+  int window_idle_over_ten = 0;
+  cout << "Number of windows: " << num_windows << endl;
+  for(int i = 0; i < num_windows; ++i)
+  {
+    cout << window_array[i]->idleTime << endl;
+    mean_idle += window_array[i]->idleTime;
+    //compare longest idle times
+    // if(window_array[i]->idleTime > longest_idle)
+    // {
+    //   longest_idle = window_array[i]->idleTime;
+    // }
+    // //if anyone windows were idle for more than 10 min increment
+    // if(window_array[i]->idleTime > 10)
+    // {
+    //   window_idle_over_ten++;
+    // }
+  }
+  //calculate mean
+  mean_idle = mean_idle / num_windows;
+
+  cout << "The mean wait time per student is: " << mean_wait_time << endl;
+  cout << "The median wait time per student is: " << median << endl;
+  cout << "The longest wait time was: " << longest_wait_time << endl;
+  cout << "Number of students waiting longer than 10 min: " << students_over_ten << endl;
+  cout << "The mean window idle time: " << mean_idle << endl;
+  cout << "The longest window idle time: " << longest_idle << endl;
+  cout << "Number of windows idle for over 10 min: " << window_idle_over_ten << endl;
 }
 
 bool testTheFunctions(){

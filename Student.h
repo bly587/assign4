@@ -12,8 +12,9 @@ class Student{
     Student();
     //overload
     Student(int tn);
-    //setter for time at window
+    //Updating student's time needed
     void UpdateTimeNeeded();
+    //updating student's time waited
     void UpdateTimeWaiting();
 };
 
@@ -28,12 +29,12 @@ Student::Student(int tn)
   waitTime = 0;
   timeNeeded = tn;
 }
-
+//after each clock tick we subtract the time needed IF they are at a window
 void Student::UpdateTimeNeeded()
 {
   timeNeeded--;
 }
-
+//after each clock tick we add time to the time they have waited IF they are in line
 void Student::UpdateTimeWaiting()
 {
   waitTime++;
