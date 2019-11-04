@@ -154,7 +154,7 @@ int main(int argc, char *argv[])
   }
 
   // Calculates and prints the statistics
-  calcAndPrintStats(student_wait_times, window_array, num_windows);
+  calcAndPrintStats(student_wait_times, *window_array, num_windows);
   // ---------------------------------
   //testTheFunctions();
   return 0;
@@ -228,8 +228,8 @@ void calcAndPrintStats(SLinkedList *student_wait_times, Window* window_array, in
   cout << "Number of windows: " << num_windows << endl;
   for(int i = 0; i < num_windows; ++i)
   {
-    cout << window_array[i]->idleTime << endl;
-    mean_idle += window_array[i]->idleTime;
+    cout << window_array[i].idleTime << endl;
+    mean_idle += window_array[i].idleTime;
     //compare longest idle times
     // if(window_array[i]->idleTime > longest_idle)
     // {
