@@ -34,6 +34,7 @@ void Window::setStudent(Student *s1){
   isOpen = false;
 }
 
+//remove student from window
 Student* Window::removeStudent(){
   isOpen = true;
   Student *student = s;
@@ -49,7 +50,6 @@ void Window::updateWindow(){
     s->timeNeeded--; // decrement timeNeeded
     if (s->timeNeeded == 0){ // if student is done at window
       removeStudent();
-      cout << "student leaving Window!" << endl;
     }
   }
 }

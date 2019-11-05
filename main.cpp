@@ -75,7 +75,7 @@ int main(int argc, char *argv[])
   while(true){
 
     time++;
-    cout << "time: " << time << endl;
+    //cout << "time: " << time << endl;
 
     if (!isFirstIter){
       // Increment variables
@@ -85,25 +85,25 @@ int main(int argc, char *argv[])
         Student *s = registrar_line->remove();
         //update their waittime
         s->waitTime++;
-        cout << "incrementing wait time for student in line!" << endl;
+        //cout << "incrementing wait time for student in line!" << endl;
         //add them back into the queue. This works because if everyone is removed and then added back to the queue the order will be the same
         registrar_line->add(s);
       }
       // Updates Windows
-      cout << "updating the windows!" << endl;
+      //cout << "updating the windows!" << endl;
       for (int i = 0; i < num_windows; ++i){
         //decrements the time needed to the students at windows
         //also has students removed from windows if their time needed is 0
         //increments time idle if window is open
         window_array[i]->updateWindow();
-        cout << "Window idle time is: " << window_array[i]->idleTime << endl;
+        //cout << "Window idle time is: " << window_array[i]->idleTime << endl;
       }
     }
 
     if (!haltFileRead){
       // Stores the clock tick
       getline(text_file, line);
-      cout << "this is the line: " << line << endl;
+      //cout << "this is the line: " << line << endl;
       if (text_file.eof()){ // checks to see if we are done reading the file
         fileIsDone = true;
       }
@@ -119,7 +119,7 @@ int main(int argc, char *argv[])
         catch (int e){
           clock_tick = stoi(line);
         }
-        cout << "Clock tick: " << clock_tick << endl;
+        //cout << "Clock tick: " << clock_tick << endl;
       }
       haltFileRead = true;
     }
@@ -132,7 +132,7 @@ int main(int argc, char *argv[])
       for (int i = 0; i < num_students; ++i){
         getline(text_file, line);
         int timeNeeded = stoi(line); // gets Student's time needed at window
-        cout << "student with timeNeeded - " << timeNeeded << " - added to queue" << endl;
+        //cout << "student with timeNeeded - " << timeNeeded << " - added to queue" << endl;
         Student *s = new Student(timeNeeded); // creates new instance of student with timeNeeded variable
         registrar_line->add(s); // adds student to the queue
       }
@@ -145,7 +145,7 @@ int main(int argc, char *argv[])
       if (window_array[i]->isOpen && !registrar_line->isEmpty()){ // there is an open window AND a student is in line
         Student *s = registrar_line->remove(); // removes student from line
         student_wait_times->insertFront(s->waitTime); // sends student's wait time to stat collector
-        cout << "Moving student at front of line to window. Their wait time was: " << s->waitTime << endl;
+        //cout << "Moving student at front of line to window. Their wait time was: " << s->waitTime << endl;
         window_array[i]->setStudent(s); // sends student to window
       }
     }
@@ -176,8 +176,8 @@ int main(int argc, char *argv[])
   bool isEven = false;
   int size_of_list = student_wait_times->getSize();
   //if length is even
-  cout << size_of_list << endl;
-  cout << student_wait_times->getSize() << endl;
+  //cout << size_of_list << endl;
+  //cout << student_wait_times->getSize() << endl;
   if(size_of_list % 2 == 0)
   {
     isEven = true;
@@ -196,7 +196,7 @@ int main(int argc, char *argv[])
     {
       students_over_ten++;
     }
-    cout << tmp_wait_time << endl;
+    //cout << tmp_wait_time << endl;
     //add to mean
     mean_wait_time += tmp_wait_time;
     //calculate for median
@@ -220,18 +220,18 @@ int main(int argc, char *argv[])
       }
     }
   }
-  cout << mean_wait_time << endl;
+  //cout << mean_wait_time << endl;
   mean_wait_time = mean_wait_time / size_of_list;
-  cout << student_wait_times->getSize() << endl;
+  //cout << student_wait_times->getSize() << endl;
   // ------------------------- Window Stats -----------------------
-  cout << "Window stats starting" << endl;
+  //cout << "Window stats starting" << endl;
   float mean_idle = 0;
   int longest_idle = 0;
-  int window_idle_over_ten = 0;
-  cout << "Number of windows: " << num_windows << endl;
+  int window_idle_over_five = 0;
+  //cout << "Number of windows: " << num_windows << endl;
   for(int i = 0; i < num_windows; ++i)
   {
-    cout << window_array[i]->idleTime << endl;
+    //cout << window_array[i]->idleTime << endl;
     mean_idle += window_array[i]->idleTime;
     // compare longest idle times
     if(window_array[i]->idleTime > longest_idle)
@@ -239,9 +239,9 @@ int main(int argc, char *argv[])
       longest_idle = window_array[i]->idleTime;
     }
     //if anyone windows were idle for more than 10 min increment
-    if(window_array[i]->idleTime > 10)
+    if(window_array[i]->idleTime > 5)
     {
-      window_idle_over_ten++;
+      window_idle_over_five++;
     }
   }
   //calculate mean
@@ -253,7 +253,7 @@ int main(int argc, char *argv[])
   cout << "Number of students waiting longer than 10 min: " << students_over_ten << endl;
   cout << "The mean window idle time: " << mean_idle << endl;
   cout << "The longest window idle time: " << longest_idle << endl;
-  cout << "Number of windows idle for over 10 min: " << window_idle_over_ten << endl;
+  cout << "Number of windows idle for over 5 min: " << window_idle_over_five << endl;
 
   return 0;
 }

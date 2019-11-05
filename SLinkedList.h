@@ -37,10 +37,9 @@ SLinkedList::~SLinkedList(){
   while (current != NULL){
     SListNode* next = current->next;
     delete current;
-    cout << "node deleted; size now: " << --size << endl;
+    --size;
     current = next;
   }
-  cout << "donzo" << endl;
 }
 
 unsigned int SLinkedList::getSize(){
@@ -100,7 +99,7 @@ int SLinkedList::deletePos(int pos){
   size--;
   return temp;
 }
-
+//located a node with data d
 int SLinkedList::find(int d){
   int idx = 0;
   SListNode *curr = front;
@@ -117,7 +116,7 @@ int SLinkedList::find(int d){
   }
   return idx;
 }
-
+//bool if our list is empty
 bool SLinkedList::isEmpty(){
   if (size == 0){
     return true;
