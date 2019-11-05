@@ -108,7 +108,17 @@ int main(int argc, char *argv[])
         fileIsDone = true;
       }
       else{ // if we are still reading the file like usual
-        clock_tick = stoi(line);
+        try{
+          throw stoi(line);
+        }
+        catch (invalid_argument e){
+          cout << "Line: " << line << endl;
+          cout << "Invalid character in text file. Please try again." << endl;
+          exit(1);
+        }
+        catch (int e){
+          clock_tick = stoi(line);
+        }
         cout << "Clock tick: " << clock_tick << endl;
       }
       haltFileRead = true;
@@ -153,15 +163,8 @@ int main(int argc, char *argv[])
 
   }
 
-  // Calculates and prints the statistics
-  calcAndPrintStats(student_wait_times, *window_array, num_windows);
-  // ---------------------------------
-  //testTheFunctions();
-  return 0;
-}
+  /* ------------------------------ Calculate Statistics ---------------------*/
 
-void calcAndPrintStats(SLinkedList *student_wait_times, Window* window_array, int num_windows)
-{
   // -------------- Student Wait Times --------------------
   float mean_wait_time = 0;
   float median = 0;
@@ -228,18 +231,18 @@ void calcAndPrintStats(SLinkedList *student_wait_times, Window* window_array, in
   cout << "Number of windows: " << num_windows << endl;
   for(int i = 0; i < num_windows; ++i)
   {
-    cout << window_array[i].idleTime << endl;
-    mean_idle += window_array[i].idleTime;
-    //compare longest idle times
-    // if(window_array[i]->idleTime > longest_idle)
-    // {
-    //   longest_idle = window_array[i]->idleTime;
-    // }
-    // //if anyone windows were idle for more than 10 min increment
-    // if(window_array[i]->idleTime > 10)
-    // {
-    //   window_idle_over_ten++;
-    // }
+    cout << window_array[i]->idleTime << endl;
+    mean_idle += window_array[i]->idleTime;
+    // compare longest idle times
+    if(window_array[i]->idleTime > longest_idle)
+    {
+      longest_idle = window_array[i]->idleTime;
+    }
+    //if anyone windows were idle for more than 10 min increment
+    if(window_array[i]->idleTime > 10)
+    {
+      window_idle_over_ten++;
+    }
   }
   //calculate mean
   mean_idle = mean_idle / num_windows;
@@ -251,6 +254,8 @@ void calcAndPrintStats(SLinkedList *student_wait_times, Window* window_array, in
   cout << "The mean window idle time: " << mean_idle << endl;
   cout << "The longest window idle time: " << longest_idle << endl;
   cout << "Number of windows idle for over 10 min: " << window_idle_over_ten << endl;
+
+  return 0;
 }
 
 bool testTheFunctions(){
