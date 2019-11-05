@@ -247,13 +247,13 @@ int main(int argc, char *argv[])
   //calculate mean
   mean_idle = mean_idle / num_windows;
 
-  cout << "The mean wait time per student is: " << mean_wait_time << endl;
-  cout << "The median wait time per student is: " << median << endl;
-  cout << "The longest wait time was: " << longest_wait_time << endl;
-  cout << "Number of students waiting longer than 10 min: " << students_over_ten << endl;
-  cout << "The mean window idle time: " << mean_idle << endl;
-  cout << "The longest window idle time: " << longest_idle << endl;
-  cout << "Number of windows idle for over 5 min: " << window_idle_over_five << endl;
+  cout << "1. The mean wait time per student is: " << mean_wait_time << endl;
+  cout << "2. The median wait time per student is: " << median << endl;
+  cout << "3. The longest wait time was: " << longest_wait_time << endl;
+  cout << "4. Number of students waiting longer than 10 min: " << students_over_ten << endl;
+  cout << "5. The mean window idle time: " << mean_idle << endl;
+  cout << "6. The longest window idle time: " << longest_idle << endl;
+  cout << "7. Number of windows idle for over 5 min: " << window_idle_over_five << endl;
 
   return 0;
 }
