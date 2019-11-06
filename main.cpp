@@ -52,7 +52,18 @@ int main(int argc, char *argv[])
 
   // Gets first line in file --> number of windows
   getline(text_file, line);
-  int num_windows = stoi(line); // gets number of windows
+  int num_windows;
+  try{
+    throw stoi(line);
+  }
+  catch (invalid_argument e){
+    cout << "Line: " << line << endl;
+    cout << "Invalid character in text file. Please try again." << endl;
+    exit(1);
+  }
+  catch (int e){
+    num_windows = stoi(line); // gets number of windows
+  }
 
   // Creates window array and all the window objects
   Window *window_array[num_windows];
@@ -128,10 +139,34 @@ int main(int argc, char *argv[])
     if (clock_tick == time){
       // Creates new students and adds them to the queue
       getline(text_file, line);
-      int num_students = stoi(line);
+      int num_students;
+
+      try{
+        throw stoi(line);
+      }
+      catch (invalid_argument e){
+        cout << "Line: " << line << endl;
+        cout << "Invalid character in text file. Please try again." << endl;
+        exit(1);
+      }
+      catch (int e){
+        num_students = stoi(line);
+      }
       for (int i = 0; i < num_students; ++i){
         getline(text_file, line);
-        int timeNeeded = stoi(line); // gets Student's time needed at window
+        int timeNeeded;
+        try{
+          throw stoi(line);
+        }
+        catch (invalid_argument e){
+          cout << "Line: " << line << endl;
+          cout << "Invalid character in text file. Please try again." << endl;
+          exit(1);
+        }
+        catch (int e){
+          timeNeeded = stoi(line); // gets Student's time needed at window
+        }
+
         //cout << "student with timeNeeded - " << timeNeeded << " - added to queue" << endl;
         Student *s = new Student(timeNeeded); // creates new instance of student with timeNeeded variable
         registrar_line->add(s); // adds student to the queue
