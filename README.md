@@ -20,5 +20,5 @@ main.cpp
 a. https://stackoverflow.com/questions/2251433/checking-for-eof-in-stringgetline/2251612
 
 5. INSTRUCTIONS FOR RUNNING THE ASSIGNMENT
-g++ *.cpp
-./a.out
+make all
+./4.out <filename>
